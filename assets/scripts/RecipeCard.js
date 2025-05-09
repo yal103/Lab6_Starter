@@ -14,7 +14,7 @@ class RecipeCard extends HTMLElement {
         this.article = document.createElement('article');
 
 		// A3. TODO - Create a style element - This will hold all of the styles for the Web Component
-        style = document.createElement('style');
+        let style = document.createElement('style');
 
 		// A4. TODO - Insert all of the styles from cardTemplate.html into the <style> element you just made (copy everything INSIDE the <style> tag>)
         style.textContent = `
@@ -96,7 +96,7 @@ class RecipeCard extends HTMLElement {
 
 		// A5. TODO - Append the <style> and <article> elements to the Shadow DOM
         shadow.appendChild(style);
-        shadow.appendChild(article);
+        shadow.appendChild(this.article);
 	}
 
 	/**
@@ -135,20 +135,20 @@ class RecipeCard extends HTMLElement {
 		//           Remember to replace all the placeholders in the template with the data passed in.
 		//           i.e. imgSrc, titleLnk, etc
         article.innerHTML = `
-            <img src="https://link-to-article.com/recipe-thumbnail.jpg"
-                alt="Recipe Title">
+            <img src="${data.imgSrc}"
+                alt="${data.imgAlt}">
             <p class="title">
-                <a href="https://link-to-article.com">Title</a>
+                <a href="${data.titleLnk}">${data.titleTxt}</a>
             </p>
-            <p class="organization">The Chef's Organization</p>
+            <p class="organization">${data.organization}</p>
             <div class="rating">
-                <span>5</span>
-                <img src="/assets/images/icons/5-star.svg" alt="5 stars">
-                <span>(500)</span>
+                <span>${data.rating}</span>
+                <img src="/assets/images/icons/${data.rating}-star.svg" alt="${data.rating} stars">
+                <span>(${data.numRatings})</span>
             </div>
-            <time>50 min</time>
+            <time>${data.lengthTime}</time>
             <p class="ingredients">
-                Comma, Separated, List, of, Ingredients
+                ${data.ingredients}
             </p>
         `;
 	}
